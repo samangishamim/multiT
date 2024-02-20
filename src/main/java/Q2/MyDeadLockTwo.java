@@ -1,6 +1,6 @@
 package Q2;
 
-public class MyDeadLockTwo {
+public class MyDeadLockTwo  extends Thread{
     private static final Object resource1 = new Object();
     private static final Object resource2 = new Object();
 
