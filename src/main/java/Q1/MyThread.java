@@ -1,4 +1,5 @@
 package Q1;
+
 public class MyThread implements Runnable {
 
     EvenOdd evenOdd;
