@@ -8,11 +8,6 @@ public class MyThreadStarvation {
             synchronized (lock) {
                 while (true) {
                     System.out.println("Thread 1 is running");
-                    try {
-                        Thread.sleep(1000); // Release the lock for 1 second
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                 }
             }
         });
@@ -21,11 +16,6 @@ public class MyThreadStarvation {
             synchronized (lock) {
                 while (true) {
                     System.out.println("Thread 2 is running");
-                    try {
-                        Thread.sleep(1000); // Release the lock for 1 second
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                 }
             }
         });
