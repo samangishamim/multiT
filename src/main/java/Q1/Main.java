@@ -1,5 +1,6 @@
 package Q1;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -8,22 +9,28 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("enter the input: ");
-        int input = scanner.nextInt();
-
-        MyThread t1 = new MyThread("Even", evenOdd);
-        t1.thread.start();
-
-        MyThread t2 = new MyThread("odd", evenOdd);
-        t2.thread.start();
+        int input = Integer.parseInt(scanner.nextLine());
 
         int eBound = (input % 2 == 0) ? input : input - 1;//sanjidane drost va ghalat bodn
         int oBound = (input % 2 == 0) ? input - 1 : input;
+
+        MyThread t1 = new MyThread("Even", evenOdd,eBound);
+        t1.thread.start();
+
+        MyThread t2 = new MyThread("odd", evenOdd,oBound);
+        t2.thread.start();
+
+
 
         try {
             t1.thread.join();
             t2.thread.join();
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
+        }
+        ArrayList<Integer> list = evenOdd.list;
+        for (Integer num : list) {
+            System.out.print(num+" ");
         }
     }
 }
