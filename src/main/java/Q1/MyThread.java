@@ -1,27 +1,25 @@
 package Q1;
-
-import java.util.List;
-
 public class MyThread implements Runnable {
-    private final List<Integer> sharedList;
-    private final boolean isEven;
-    private final int maxNumber;
 
-    public MyThread(List<Integer> sharedList, boolean isEven, int maxNumber) {
-        this.sharedList = sharedList;
-        this.isEven = isEven;
-        this.maxNumber = maxNumber;
+    EvenOdd evenOdd;
+    Thread thread;
+    int input;
+
+    public MyThread(String name, EvenOdd evenOdd) {
+        thread = new Thread(this, name);
+        this.evenOdd = evenOdd;
     }
 
     @Override
     public void run() {
-        synchronized (sharedList) {
-            for (int i = isEven ? 0 : 1; i <= maxNumber; i += 2) {
-                if ((isEven && i % 2 == 0) || (!isEven && i % 2 == 1)) {
-                    sharedList.add(i);
-                }
+        if (thread.getName().compareTo("Even") == 0) {
+            for (int i = 0; i <=input; i += 2) evenOdd.Even(true);
+            evenOdd.Even(false);
+        } else {
+            for (int i = 0; i < input; i += 2) evenOdd.Odd(true);
+            {
+                evenOdd.Odd(false);
             }
-            sharedList.notify();
         }
     }
 }
